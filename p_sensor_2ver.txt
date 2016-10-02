@@ -1,0 +1,21 @@
+float val = 0;
+float val2 = 0;
+void setup() {
+
+Serial.begin(9600);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+val = analogRead(A0);
+val2 = analogRead(A1);
+float val_m = map(val,0,1024,0,10000);
+float val2_m = map(val2,0,1024,0,10000);
+Serial.print("Pressure Sensor1 Input = ");
+Serial.print(val_m);
+Serial.print(" Pressure Sensor2 Input = ");
+Serial.println(val2_m);
+delay(500);
+}
