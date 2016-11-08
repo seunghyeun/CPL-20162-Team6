@@ -1,0 +1,54 @@
+
+#include <SoftwareSerial.h>
+
+const int SENS_PIN = A0;
+const int SENS_PIN2 = A1;
+const int SENS_PIN3 = A2;
+const int SENS_PIN4 = A3;
+
+int sensorValue1 = 0;
+int sensorValue2 = 0;
+int sensorValue3 = 0;
+int sensorValue4 = 0;
+
+SoftwareSerial BTSerial(1,0); //softwareSerial(RX,TX) // 아두이노 입장에서!
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Hello!");
+  BTSerial.begin(115200);
+}
+
+void loop() {
+
+//값 설정하기 위한 코드 부분
+ /* if(Serial.available()){
+    BTSerial.write(Serial.read()); //블루투스 내용을 시리얼 모니터에 출력
+  }
+  if(BTSerial.available()){
+    Serial.write(BTSerial.read()); //시리얼 모니터 내용을 블루투스에 write
+  }*/
+  // Serial.println("*************");
+  //BT-> Data -> Serial
+  if(BTSerial.available()){
+   // Serial.write(BTSerial.read());
+   
+    sensorValue1 = analogRead(SENS_PIN);
+    sensorValue2 = analogRead(SENS_PIN2);
+    sensorValue3 = analogRead(SENS_PIN3);
+    sensorValue4 = analogRead(SENS_PIN4);
+    Serial.print("sensor 1 : ");
+    Serial.print(sensorValue1);
+    Serial.print("sensor 2 : ");
+    Serial.print(sensorValue2);
+    Serial.print("sensor 3 : ");
+    Serial.print(sensorValue3);
+    Serial.print("sensor 4 : ");
+    Serial.println(sensorValue4);
+  }
+  //serial -> Data ->BT
+ /* if(Serial.available()){
+    BTSerial.write(Serial.read());
+  }
+*/
+}
