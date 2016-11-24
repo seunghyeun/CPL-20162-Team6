@@ -1,0 +1,53 @@
+#include <SoftwareSerial.h>
+
+  
+const int SENS_PIN1 = A0;
+const int SENS_PIN2 = A1;
+const int SENS_PIN3 = A2;
+const int SENS_PIN4 = A3;
+
+String s1, s2, s3, s4;
+int val1, val2, val3, val4;
+
+SoftwareSerial BT(1,0);
+void setup() {
+    Serial.begin(115200);
+}
+
+void loop() {
+  //  if (Serial.available()) {
+      
+
+    val1 = constrain(analogRead(SENS_PIN1),0,50);
+    val2 = constrain(analogRead(SENS_PIN2),0,50);
+    val3 = constrain(analogRead(SENS_PIN3),0,50);
+    val4 = constrain(analogRead(SENS_PIN4),0,50);
+ 
+       s1 = String(map(val1 , 0, 50, 0, 300));
+       s2 = String(map(val2 , 0, 50, 0, 300));
+       s3 = String(map(val3 , 0, 50, 0, 300));
+       s4 = String(map(val4 , 0, 50, 0, 300));
+
+/*
+        dtostrf(analogRead(SENS_PIN1),5,2,sensorValue1);
+        dtostrf(analogRead(SENS_PIN2),5,2,sensorValue2);
+        dtostrf(analogRead(SENS_PIN3),5,2,sensorValue3);
+        dtostrf(analogRead(SENS_PIN4),5,2,sensorValue4);
+  */
+ 
+       Serial.print(s1+ ":"+s2+ ":"+ s3+ ":"+ s4+":");
+                
+        delay(500);
+/*
+
+        Serial.print("sensor 1 : ");
+        Serial.print(sensorValue1);
+        Serial.print(" sensor 2 : ");
+        Serial.print(sensorValue2);
+        Serial.print(" sensor 3 : ");
+        Serial.print(sensorValue3);
+        Serial.print(" sensor 4 : ");
+        Serial.println(sensorValue4);
+  */
+   //}
+}
